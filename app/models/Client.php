@@ -1,55 +1,55 @@
 <?php
 
 
-// class Client{
+class Client{
 
-//     //atributes ------------------
+    //atributes ------------------
 
-//     private $nom;
-//     private $prenom;
-//     private $email;
+    private $nom;
+    private $prenom;
+    private $email;
 
-//     //getter ------
+    //getter ------
 
-//     public function getNom(){
-//         return $this->nom;
-//     }
-//     public function getPrenom(){
-//         return $this->prenom;
-//     }
-//     public function getEmail(){
-//         return $this->email;
-//     }
-
-
-//     //construct -----------
-
-//     public function __construct($nom,$email,$prenom)
-//     {
-//         $this->nom =$nom;
-//         $this->prenom =$prenom;
-//         $this->email =$email;
-//     }
+    public function getNom(){
+        return $this->nom;
+    }
+    public function getPrenom(){
+        return $this->prenom;
+    }
+    public function getEmail(){
+        return $this->email;
+    }
 
 
+    //construct -----------
 
-//     //setter ------
+    public function __construct($nom,$email,$prenom)
+    {
+        $this->nom =$nom;
+        $this->prenom =$prenom;
+        $this->email =$email;
+    }
 
-//     public function setNom($nom){
-//         $this->nom = $nom;
-//     }
-//     public function setPrenom($prenom){
-//         $this->prenom = $prenom;
-//     }
-//     public function setEmail($email){
-//         $email = trim($email);
-//         if (!filter_var($email , FILTER_VALIDATE_EMAIL)) {
-//             die("Email invalide");
-//         }
 
-//         $this->email = $email;
-//     }
+
+    //setter ------
+
+    public function setNom($nom){
+        $this->nom = $nom;
+    }
+    public function setPrenom($prenom){
+        $this->prenom = $prenom;
+    }
+    public function setEmail($email){
+        $email = trim($email);
+        if (!filter_var($email , FILTER_VALIDATE_EMAIL)) {
+            die("Email invalide");
+        }
+
+        $this->email = $email;
+    }
     
-// }
+}
 
 ?>
