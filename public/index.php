@@ -41,14 +41,14 @@ $newClient = $clientRepo->modifieClient("2","Ali","ali@gmail.com","051278031",$d
 
 
 
-// $compteRepo = new compteRepo($pdo);
+$compteRepo = new compteRepo($pdo);
 // $compte1 = $compteRepo->ajouteCompte("2","courant","45000",$date_creation);
 
 // echo "ajoute de compte success ";
 echo " <br>" . "---------------------------------------------------------------------------------" . " <br>" ;
 
-$compteRepo = new compteRepo($pdo);
-// $compte1 = $compteRepo->supprimeCompte("2");
+$clientRepo = new clientRepo($pdo);
+$compte1 = $clientRepo->supprimeClientSansCompte("12");
 echo "Suppimer de comlpte success ";
 
 echo " <br>" . "---------------------------------------------------------------------------------" . " <br>" ;
