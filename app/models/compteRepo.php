@@ -40,6 +40,25 @@ class compteRepo
         }
     }
 
+
+    public function supprimeCompteSansSolde($client_id)
+    {
+        try {
+            $sql = "DELETE FROM comptes 
+                    WHERE client_id = :client_id 
+                    AND solde <= 0";
+
+            $stmt = $this->Db->prepare($sql);
+            $stmt->execute([":client_id" => $client_id]);
+
+            return true;
+             
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            return false;
+        }
+    }
+
     public function afficheCompte($client_id)
     {
         try {

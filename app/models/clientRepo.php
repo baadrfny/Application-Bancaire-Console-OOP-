@@ -45,7 +45,7 @@ class clientRepo
         try {
             $sql = "DELETE FROM clients 
                 WHERE id = :id 
-                AND NOT EXISTS (SELECT 1 FROM comptes WHERE client_id = :id)";
+                AND NOT EXISTS (SELECT 1 FROM clients WHERE id = :id AND solde <= 0)";
 
             $stmt = $this->Db->prepare($sql);
             $stmt->execute([":id" => $id]);

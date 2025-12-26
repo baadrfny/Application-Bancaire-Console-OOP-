@@ -73,8 +73,11 @@ foreach ($toutComptes as $uneCompte) {
     echo "Solde de compte :" .$uneCompte['solde']. "<br>". "<br>";
 }
 
+echo " <br>" . "--------------------------    Supprimer compte avec solde = 0   ---------------------------" . " <br>" ;
+$compteRepo = new compteRepo($pdo);
+$deletedAcc = $compteRepo->supprimeCompteSansSolde("10");
 
-
+echo " <br>" . "---------------------------------------------------------------------------------------------------------------------------" . " <br>" ;
 
 // $courant = new compteCourant("1001",12500,"8010");
 // $courant->retirer(1200);
