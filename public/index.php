@@ -46,10 +46,18 @@ $date_creation = date("Y-m-d H:i:s");
 echo " <br>" . "---------------------------------------------------------------------------------" . " <br>" ;
 
 $compteRepo = new compteRepo($pdo);
-$compte1 = $compteRepo->supprimeCompte("2");
+// $compte1 = $compteRepo->supprimeCompte("2");
 echo "Suppimer de comlpte success ";
 
 echo " <br>" . "---------------------------------------------------------------------------------" . " <br>" ;
+$comptes = $compteRepo->afficheCompte("2");
+
+foreach($comptes as $client){
+    echo "Client ID :" . $client['client_id'] . "<br>";
+    echo "Type de compte :" .$client['TYPE'] . "<br>";
+    echo "Solde de compte :" .$client['solde']. "$" . "<br>" ;
+}
+echo "affichage de compte success";
 
 // $courant = new compteCourant("1001",12500,"8010");
 // $courant->retirer(1200);
