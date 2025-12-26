@@ -33,7 +33,7 @@ class Client{
 
 
 
-    //setter ------
+    //setter -----------------
 
     public function setNom($nom){
         $this->nom = $nom;
