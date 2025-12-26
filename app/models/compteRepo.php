@@ -53,4 +53,15 @@ class compteRepo
             echo ($e);
         }
     }
+    public function afficheToutCompte()
+    {
+        try {
+            $sql = "SELECT * FROM comptes ";
+            $stmt = $this->Db->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchALL(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            echo ($e);
+        }
+    }
 }

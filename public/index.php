@@ -50,6 +50,8 @@ $compteRepo = new compteRepo($pdo);
 echo "Suppimer de comlpte success ";
 
 echo " <br>" . "---------------------------------------------------------------------------------" . " <br>" ;
+echo " <br>" . "--------------------------    AFFiCHAGE D'UN COMPTE   ---------------------------" . " <br>" ;
+
 $comptes = $compteRepo->afficheCompte("2");
 
 foreach($comptes as $client){
@@ -58,6 +60,16 @@ foreach($comptes as $client){
     echo "Solde de compte :" .$client['solde']. "$" . "<br>" ;
 }
 echo "affichage de compte success";
+echo " <br>" . "---------------------------------------------------------------------------------" . " <br>" ;
+echo " <br>" . "--------------------------    AFFiCHAGE DES COMPTES   ---------------------------" . " <br>" ;
+
+
+$toutComptes = $compteRepo->afficheToutCompte();
+foreach ($toutComptes as $uneCompte) {
+    echo "Client ID :" . $uneCompte['client_id'] . "<br>";
+    echo "Type de compte :" .$uneCompte['TYPE']. "<br>";
+    echo "Solde de compte :" .$uneCompte['solde']. "<br>". "<br>";
+}
 
 // $courant = new compteCourant("1001",12500,"8010");
 // $courant->retirer(1200);
