@@ -34,11 +34,13 @@ foreach ($toutClients as $client) {
 }
 
 echo "-------------------------------------------------" . "<br>";
-
-
-
-
 $date_creation = date("Y-m-d H:i:s");
+
+$newClient = $clientRepo->modifieClient("2","Ali","ali@gmail.com","051278031",$date_creation);
+
+
+
+
 // $compteRepo = new compteRepo($pdo);
 // $compte1 = $compteRepo->ajouteCompte("2","courant","45000",$date_creation);
 
@@ -70,6 +72,9 @@ foreach ($toutComptes as $uneCompte) {
     echo "Type de compte :" .$uneCompte['TYPE']. "<br>";
     echo "Solde de compte :" .$uneCompte['solde']. "<br>". "<br>";
 }
+
+
+
 
 // $courant = new compteCourant("1001",12500,"8010");
 // $courant->retirer(1200);

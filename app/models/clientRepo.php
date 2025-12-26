@@ -39,37 +39,27 @@ class clientRepo
         }
     }
 
-    public function modifieClient($nom, $email)
+    public function modifieClient($id,$nom, $email,$telephone,$date_creation)
     {
-        $sql = "SELECT * FROM clients WHERE email = :email";
+        $sql = "UPDATE clients 
+                SET nom = :nom,
+                    email = :email,
+                    telephone = :telephone,
+                    date_creation = :date_creation
+                WHERE id = :id
+        ";
         $stmt1 = $this->Db->prepare($sql);
         $stmt1->execute([
-            ":email" => $email
+            ":id"=> $id,
+            ":nom" => $nom,
+            ":email" => $email,
+            ":telephone" => $telephone,
+            ":date_creation" => $date_creation
         ]);
         $result1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$result1) {
             return;
-        }
-
-        $id = $result1[0]["id"];
-        try {
-            $sql = "UPDATE clients SET nom = :nom , email = :email WHERE id = :id";
-            $stmt2 = $this->Db->prepare($sql);
-            $stmt2->execute([
-                ":nom" => $nom,
-                ":email" => $email,
-                ":id" => $id
-            ]);
-
-            $sql = "SELECT * FROM clients WHERE id = :id";
-            $stmt3 = $this->Db->prepare($sql);
-            $stmt3->execute([
-                ":id" => $id
-            ]);
-            print_r($stmt3->fetchAll(PDO::FETCH_ASSOC));
-        } catch (Exception $e) {
-            print_r($e);
         }
     }
 
