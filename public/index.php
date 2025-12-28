@@ -109,13 +109,13 @@ if ($compteRepo->effectuerDepotE(20,3000)) {
 
 $compteRepo = new compteRepo($pdo);
 
-if ($compteRepo->effectuerRetrait(20, 799)) {
+if ($compteRepo->effectuerRetrait(27,8099)) {
     echo "Withdrawal successful!";
 } else {
     echo "Withdrawal failed (Check ID or Balance limit).";
 }
 
-$id_compte = 20;
+$id_compte = 27;
 $historique = Transaction::getHistorique($id_compte); 
 
 echo "<h2>Historique du compte #$id_compte</h2>";
@@ -134,9 +134,8 @@ if (!empty($historique)) {
     }
     echo "</table>";
 } else {
-    echo "Aucune transaction trouvée.";
+    echo "Aucune transaction trouvee.";
 }
-
 
 ?>
 

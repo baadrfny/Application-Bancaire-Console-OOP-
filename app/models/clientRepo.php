@@ -10,6 +10,7 @@ class clientRepo
         $this->Db = $Db;
     }
 
+    
     public function ajouteClient($nom, $email, $telephone)
     {
         try {
