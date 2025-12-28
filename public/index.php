@@ -1,7 +1,6 @@
 <?php
 
-
-// require_once '../app/config/conn.php';
+require_once '../app/config/conn.php';
 require_once '../app/models/Compte.php';
 require_once '../app/models/compteCourant.php';
 require_once '../app/models/clientRepo.php';
@@ -42,9 +41,15 @@ $newClient = $clientRepo->modifieClient("2","Ali","ali@gmail.com","051278031",$d
 
 
 $compteRepo = new compteRepo($pdo);
-// $compte1 = $compteRepo->ajouteCompte("2","courant","45000",$date_creation);
+// // $compte1 = $compteRepo->ajouteCompte(92,'courant',13000,$date_creation);
 
-// echo "ajoute de compte success ";
+
+// $CompteCourant = new CompteCourant(5000,2);
+// $accCourant = $CompteCourant->deposer(502,5);
+
+
+
+echo "ajoute de compte success ";
 echo " <br>" . "---------------------------------------------------------------------------------" . " <br>" ;
 
 $clientRepo = new clientRepo($pdo);
@@ -66,6 +71,7 @@ echo " <br>" . "----------------------------------------------------------------
 echo " <br>" . "--------------------------    AFFiCHAGE DES COMPTES   ---------------------------" . " <br>" ;
 
 
+
 $toutComptes = $compteRepo->afficheToutCompte();
 foreach ($toutComptes as $uneCompte) {
     echo "Client ID :" . $uneCompte['client_id'] . "<br>";
@@ -79,10 +85,56 @@ $deletedAcc = $compteRepo->supprimeCompteSansSolde("10");
 
 echo " <br>" . "---------------------------------------------------------------------------------------------------------------------------" . " <br>" ;
 
-// $courant = new compteCourant("1001",12500,"8010");
-// $courant->retirer(1200);
-// $epargne = new compteEpargne("1002",1200,"8020");
-// echo "Votre Solde bancaire :  " . $courant;
 
+
+// $compteRepo = new compteRepo($pdo);
+
+// if ($compteRepo->effectuerDepot(19,800)) {
+//     echo "Deposer avec success";
+// } else {
+//     echo "Error in Deposer ! , (Incorrect id)";
+// }
+
+
+$compteRepo = new compteRepo($pdo);
+
+if ($compteRepo->effectuerDepotE(20,3000)) {
+    echo "Deposer avec success";
+} else {
+    echo "Error in Deposer ! , (Incorrect id)";
+}
+
+
+
+
+$compteRepo = new compteRepo($pdo);
+
+if ($compteRepo->effectuerRetrait(20, 799)) {
+    echo "Withdrawal successful!";
+} else {
+    echo "Withdrawal failed (Check ID or Balance limit).";
+}
+
+$id_compte = 20;
+$historique = Transaction::getHistorique($id_compte); 
+
+echo "<h2>Historique du compte #$id_compte</h2>";
+
+if (!empty($historique)) {
+    echo "<table border='1' cellpadding='10'>";
+    echo "<tr><th>Date</th><th>Type</th><th>Montant</th><th>Frais</th></tr>";
+    
+    foreach ($historique as $action) {
+        echo "<tr>";
+        echo "<td>" . $action['DATE'] . "</td>"; 
+        echo "<td>" . $action['TYPE'] . "</td>";
+        echo "<td>" . $action['montant'] . " DH</td>";
+        echo "<td>" . $action['frais'] . " DH</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+} else {
+    echo "Aucune transaction trouvée.";
+}
 
 ?>

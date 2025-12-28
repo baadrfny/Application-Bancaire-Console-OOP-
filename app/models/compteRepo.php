@@ -83,4 +83,77 @@ class compteRepo
             echo ($e);
         }
     }
+
+
+    public function effectuerDepot($id, $montant)
+    {
+        try {
+            $sql = "SELECT * FROM comptes WHERE id = :id";
+            $stmt = $this->Db->prepare($sql);
+            $stmt->execute([":id" => $id]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($row) {
+                $compte = new CompteCourant($row['id'], $row['solde'], $row['client_id']);
+
+                $compte->deposer($montant);
+
+                return true;
+            }
+            return false;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            return false;
+        }
+    }
+
+
+    public function effectuerRetrait($id, $montant)
+    {
+        try {
+            
+            $sql = "SELECT * FROM comptes WHERE id = :id";
+            $stmt = $this->Db->prepare($sql);
+            $stmt->execute([":id" => $id]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($row) {
+                
+                $compte = new CompteCourant($row['id'], $row['solde'], $row['client_id']);
+
+                
+                $compte->retirer($montant);
+
+                return true;
+            }
+            return false;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            return false;
+        }
+    }
+
+
+
+
+
+    public function effectuerDepotE($id, $montant) {
+    $stmt = $this->Db->prepare("SELECT * FROM comptes WHERE id = :id");
+    $stmt->execute([":id" => $id]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row) {
+
+
+        if ($row['TYPE'] == 'Epargne') {
+            $compte = new compteEpargne($row['id'], $row['solde'], $row['client_id']);
+        } else {
+            $compte = new CompteCourant($row['id'], $row['solde'], $row['client_id']);
+        }
+
+        $compte->deposer($montant);
+        return true;
+    }
+    return false;
+}
 }

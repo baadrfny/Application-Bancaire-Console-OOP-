@@ -1,14 +1,15 @@
 <?php 
 
 abstract class Compte{
-    protected $numero;
+    protected $id;
     protected $solde;
     protected $client_id;
 
-    public function __construct($numero,$solde,$client_id)
+    public function __construct($id,$solde,$client_id)
     {
-        $this->numero = $numero;
+        
         $this->solde = $solde;
+        $this->id = $id;
         $this->client_id = $client_id;
     }
 
